@@ -7,7 +7,6 @@ import AddBuilding from './components/AddBuilding';
 import Credit from './components/Credit';
 import { render } from '@testing-library/react';
 import data from './data/data';
-import axios from "axios";
 let title="";
 let description="";
 let location="";
@@ -16,7 +15,7 @@ let requirements=[];
 let idCount=0;
 let additionalReqs=[];
 let reqs=[];
-const App = (props) => {
+const App2 = (props) => {
     const [filterText, setFilterText] = useState('');
     const [selectedBuilding, setSelectedBuilding] = useState(0);
     let lista=props.data;
@@ -66,14 +65,6 @@ const App = (props) => {
             });
             data.len=props.data;
             k=props.data.length-1;
-            axios.post('http://localhost:5000', props.data[k])
-            .then((res) => {
-                console.log(res.data)
-            }).catch((error) => {
-                console.log(error)
-            });
-
-        this.setState(props.data );
         }
         /*
             props.data.push({
@@ -163,13 +154,6 @@ const App = (props) => {
         for(let i=0; i<props.data.length; i++)
         if(props.data[i]!==val)
         arr.push(props.data[i]);
-        axios.post('http://localhost:5000/users')
-        .then(res => {
-            this.setState(props.data);
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
         return arr;
 
     };
@@ -246,16 +230,7 @@ const App = (props) => {
                      <ViewBuilding 
                         dataOne={getId()} 
                         />  
-                        <button  onClick={()=>updateList(getNotThisOne(props.data.splice(remove(), 1)))}>Remove Job</button>
-            <input type="text" placeholder="Enter title of job" onChange={(e)=>func(e.target.value)}></input>
-            <input type="text" placeholder="Enter description of job"onChange={(e)=>func2(e.target.value)}></input>
-            <input type="text" placeholder="Enter location of job"onChange={(e)=>func3(e.target.value)}></input>
-            <input type="text" placeholder="Enter wage of job"onChange={(e)=>func4(e.target.value)}></input>
-            <input type="text" placeholder="Enter requirements of job (separated by commas and a space)"onChange={(e)=>func5(e.target.value)}></input>
-            <input type="text" placeholder="Enter additional reqs (separated by commas and a space)"onChange={(e)=>func6(e.target.value)}></input>
-
-            <button onClick={()=>updateList(addTo())}>Add Job</button>
-
+                        
         
                         
                     </div>
@@ -266,4 +241,4 @@ const App = (props) => {
     );
 };
 
-export default App;
+export default App2;

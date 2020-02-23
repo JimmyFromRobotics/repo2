@@ -16,7 +16,7 @@ let requirements=[];
 let idCount=0;
 let additionalReqs=[];
 let reqs=[];
-const App = (props) => {
+const App3 = (props) => {
     const [filterText, setFilterText] = useState('');
     const [selectedBuilding, setSelectedBuilding] = useState(0);
     let lista=props.data;
@@ -66,7 +66,7 @@ const App = (props) => {
             });
             data.len=props.data;
             k=props.data.length-1;
-            axios.post('http://localhost:5000', props.data[k])
+            axios.post('http://localhost:5000', JSON.stringify(props.data[k]))
             .then((res) => {
                 console.log(res.data)
             }).catch((error) => {
@@ -266,4 +266,4 @@ const App = (props) => {
     );
 };
 
-export default App;
+export default App3;
